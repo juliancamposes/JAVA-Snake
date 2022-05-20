@@ -4,23 +4,24 @@ import javax.swing.*;
 import java.util.Random;
 
 public class Apple {
-    private int randomPosition[] = {0,0};
+    private static int randomPosition[] = {0,0};
+    private static JPanel pGame;
 
     public Apple() {
 
     }
 
-    public int[] getRandomPosition(JPanel panelGame) {
+    public static int[] getRandomPosition(JPanel panelGame) {
         //When the snake eats the apple, it generates a new randomPosition
         //It needs the position of the Snake (TO FIX)
-
+        pGame = panelGame;
         Random r = new Random();
         int lowW = 10;
-        int highW = panelGame.getWidth();
+        int highW = pGame.getWidth();
 
 
         int lowH = 10;
-        int highH = panelGame.getHeight();
+        int highH = pGame.getHeight();
 
 
         int randomX = r.nextInt(highW-lowW) + lowW;
