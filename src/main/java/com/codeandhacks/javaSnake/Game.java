@@ -9,20 +9,23 @@ public class Game {
     private Window w;
     private JPanel pGame = new JPanel();
     private JPanel pAccesorios = new JPanel();
-
     private JLabel appleLabel = new JLabel();
+
     JLabel newAppleLabel = new JLabel();
+    private boolean isGameFinished = false;
 
 
     public Game(Window w) {
         this.w = w;
         setComponents();
+
     }
 
     public void setComponents(){
         setPanels();
         setApple();
         setButtonRestart();
+        setSnake();
     }
 
     public void setPanels(){
@@ -43,9 +46,7 @@ public class Game {
         bRestart.setBounds(20,20, 200,50);
         bRestart.setText("Reiniciar");
         pAccesorios.add(bRestart);
-
         ActionListener l = e -> restartApple();
-
         bRestart.addActionListener(l);
     }
 
@@ -59,10 +60,12 @@ public class Game {
         ImageIcon img = new ImageIcon("img/apple.jpg");
         appleLabel.setIcon(img);
         pGame.add(appleLabel);
+        //We need return the new position (or the hitbox)
+
+
     }
 
     public void restartApple(){
-
         pGame.repaint();
         pGame.remove(appleLabel);
         pGame.remove(newAppleLabel);
@@ -71,12 +74,17 @@ public class Game {
         int positionX = appleRandomPosition[0];
         int positionY = appleRandomPosition[1];
 
-
         newAppleLabel.setLayout(null);
         newAppleLabel.setBounds(positionX,positionY, 20, 20);
         ImageIcon img = new ImageIcon("img/apple.jpg");
         newAppleLabel.setIcon(img);
         pGame.add(newAppleLabel);
 
+        //We need return the new position (or the hitbox)
+
+    }
+
+    public void setSnake(){
+        Snake snake = new Snake(w, pGame);
     }
 }
